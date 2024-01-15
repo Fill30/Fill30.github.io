@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets'
+import { getShowcaseEvents } from '../utils/Airtable'
+
+const events = await getShowcaseEvents()
+---
+
+<div class='grid grid-cols-2 max-w-screen-lg m-auto gap-4 p-4'>
+    {events?.map((ev) => (
+        <div class="relative h-[200px] overflow-hidden group rounded-xl">
+            <Image
+                class="absolute top-0 left-0 h-full w-full object-cover group-hover:saturate-0 transition-all"
+                src={ev.fields.Images?.[0]?.url ?? ''}
+                alt={`${ev.fields.Name} Image`}
+                width={ev.fields.Images?.[0]?.width ?? 0}
+                height={ev.fields.Images?.[0]?.height ?? 0}
+            />
+            <h1 class="z-10 absolute top-0 font-bold leading-[10] text-xl group-hover:opacity-100 opacity-0 w-full text-center">
+                {ev.fields.Name}
+            </h1>
+        </div>
+    ))}
+</div>

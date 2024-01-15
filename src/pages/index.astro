@@ -1,0 +1,16 @@
+---
+import { CTA } from '@/partials/CTA'
+import { Hero } from '@/partials/Hero'
+import ShowcaseEvents from '@/partials/ShowcaseEvents.astro'
+import Base from '@/templates/Base.astro'
+import { AppConfig } from '@/utils/AppConfig'
+
+const { title } = AppConfig
+const { description } = AppConfig
+---
+
+<Base head={{ title, description }}>
+    <Hero />
+    <ShowcaseEvents />
+    <CTA />
+</Base>
