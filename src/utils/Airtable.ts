@@ -20,7 +20,7 @@ export async function getShowcaseEvents(): Promise<ShowcaseEvent[] | null> {
 
         airtable
             ?.get(
-                `Freelance%20Work?filterByFormula=AND(%7BShowcase%7D+%3D+TRUE()%2C+%7BStatus%7D+%3D+"Received")&maxRecords=4&sort%5B0%5D%5Bfield%5D=Date&sort%5B0%5D%5Bdirection%5D=desc`
+                `tblw9UaKECzYofLUy?filterByFormula=AND(%7BShowcase%7D+%3D+TRUE()%2C+%7BStatus%7D+%3D+"Received")&maxRecords=4&sort%5B0%5D%5Bfield%5D=Date&sort%5B0%5D%5Bdirection%5D=desc`
             )
             .then(async (result) => {
                 if (result.data?.records)
@@ -43,9 +43,10 @@ export async function getClients(): Promise<Client[] | null> {
         }
 
         airtable
-            ?.get(`tblL6QEqOaijSdFSz`) // TODO: apply appropriate filtering/sorting
+            ?.get(`tblL6QEqOaijSdFSz?view=Gallery`) // filtering through view rather than formula
             .then(async (result) => {
                 if (result.data?.records)
+                    // console.log(JSON.stringify(result.data.records)), //I stringifyed the results it to make sure I could see what the URLs are in the Logo Array.
                     resolve(result.data.records as Client[])
                 else reject(`couldn't find any clients`)
             })

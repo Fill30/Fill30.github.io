@@ -1,5 +1,6 @@
 ---
 import { CTA } from '@/partials/CTA'
+import Carousel from '@/partials/Carousel.astro'
 import { Hero } from '@/partials/Hero'
 import ShowcaseEvents from '@/partials/ShowcaseEvents.astro'
 import Base from '@/templates/Base.astro'
@@ -12,5 +13,6 @@ const { description } = AppConfig
 <Base head={{ title, description }}>
     <Hero />
     <ShowcaseEvents />
+    <Carousel />
     <CTA />
 </Base>

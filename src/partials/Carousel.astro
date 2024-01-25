@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets'
+import { getClients } from '../utils/Airtable'
+
+const events = await getClients()
+---
+<!-- The CSS for this is just copied from someone else who did a nice Auto Scrolling Image Slider. I havent seen if it looks good yet because I ran into this image src problem -->
+<div class='h-[200px] overflow-hidden relative flex items-center px-[20px]'>
+    {events?.map((clnt) => (
+        <div class="w-[150px]">
+            <Image
+                class="h-[90px]"
+                src={clnt.fields.Images?.[0]?.url}
+                alt={`${clnt.fields.Name} Logo`}
+                width={clnt.fields.Images?.[0]?.width ?? 0}
+                height={clnt.fields.Images?.[0]?.height ?? 0}
+            />
+        </div>
+    ))}
+</div>
