@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets'
+import { getClients } from '../utils/Airtable'
+
+const clients = await getClients()
+
+if(clients?.length){
+    const carouselLength = clients?.length * 200 //need to workout how to add this to the keyframes of the scroll animation
+}
+
+---
+<div class='h-[150px] max-w-screen-lg flex gap-20 overflow-hidden m-auto items-center'>
+    {clients?.map((client) => (
+        <div class="">
+            <Image
+                class="min-w-[200px] max-w-[200px] animate-scroll"
+                src={client.fields.Logo?.[0]?.url}
+                alt={`${client.fields.Name} Logo`}
+                width={client.fields.Logo?.[0]?.width ?? 0}
+                height={client.fields.Logo?.[0]?.height ?? 0}
+            />
+        </div>
+    ))}
+</div>
+

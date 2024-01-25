@@ -4,7 +4,17 @@ module.exports = {
     './node_modules/astro-boilerplate-components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+        keyframes: {
+            scroll: {
+                '0%, 100%': { transform: 'translateX(0)' },
+                '50%': { transform: 'translateX(-800%)' },
+              }
+        },
+        animation: {
+            scroll: 'scroll 60s linear infinite'
+        }
+    },
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
