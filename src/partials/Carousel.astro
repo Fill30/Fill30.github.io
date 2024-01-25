@@ -2,19 +2,24 @@
 import { Image } from 'astro:assets'
 import { getClients } from '../utils/Airtable'
 
-const events = await getClients()
+const clients = await getClients()
+
+if(clients?.length){
+    const carouselLength = clients?.length * 200 //need to workout how to add this to the keyframes of the scroll animation
+}
+
 ---
-<!-- The CSS for this is just copied from someone else who did a nice Auto Scrolling Image Slider. I havent seen if it looks good yet because I ran into this image src problem -->
-<div class='h-[200px] overflow-hidden relative flex items-center px-[20px]'>
-    {events?.map((clnt) => (
-        <div class="w-[150px]">
+<div class='h-[150px] max-w-screen-lg flex gap-20 overflow-hidden m-auto items-center'>
+    {clients?.map((client) => (
+        <div class="">
             <Image
-                class="h-[90px]"
-                src={clnt.fields.Images?.[0]?.url}
-                alt={`${clnt.fields.Name} Logo`}
-                width={clnt.fields.Images?.[0]?.width ?? 0}
-                height={clnt.fields.Images?.[0]?.height ?? 0}
+                class="min-w-[200px] max-w-[200px] animate-scroll"
+                src={client.fields.Logo?.[0]?.url}
+                alt={`${client.fields.Name} Logo`}
+                width={client.fields.Logo?.[0]?.width ?? 0}
+                height={client.fields.Logo?.[0]?.height ?? 0}
             />
         </div>
     ))}
 </div>
+
